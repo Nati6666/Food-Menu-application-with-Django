@@ -1,30 +1,29 @@
+{% extends "food/base.html" %}
 
+{% block body %}
+  {% for item in items %}
+    <div class="row mb-4">
+      <div class="col-md-3 offset-md-2">
+      <img class="card-img-top" height="150px" src={{ item.item_image }} >
 
-{%extends "food/base.html" %}
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-   
-</head>
-<body>
+      </div>
+      <div class="col-md-4">
+        <h1>{{ item.item_name }}</h1>
+        <h2>{{ item.item_description }}</h2>
+        <h3>Price: ${{ item.item_price }}</h3>
+      </div>
+      <div class="col-md-2">
+        <a class="btn btn-primary" href="{% url 'food:item_detail' item.id %}">Detail</a>
+     
+      </div>
+    </div>
+  {% endfor %}
+  {% for item in items %}
+  <ul>
   
-
-   {% block body %}
-    {%for item in items%}
-   
-    <ul>
-        <li>
-             <a href="{% url 'food:item_detail' item.id %}"> {{item.id}} -- {{item.item_name}} </a>
-        </li>
-    </ul>
-{% endfor %}
-   {% endblock %}
-    
-
-</body>
-</html>
+      <li>
+       {{ item.id }} -- {{ item.item_name }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
